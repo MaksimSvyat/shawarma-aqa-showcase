@@ -1,0 +1,7 @@
+{
+  "txnId": "txn_test_12345",
+  "status": "SUCCEEDED",
+  "processedAt": "2026-05-01T10:00:00Z",
+  "fee": { "value": 5.0, "currency": "RUB" },
+  "message": "OK"
+}

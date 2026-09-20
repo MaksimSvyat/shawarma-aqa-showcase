@@ -1,0 +1,11 @@
+{
+  "data": {
+    "recipeRating": {
+      "recipeId": 1,
+      "averageStars": 4.7,
+      "totalReviews": 128,
+      "topComplaint": "слишком острая",
+      "trend": "UP"
+    }
+  }
+}

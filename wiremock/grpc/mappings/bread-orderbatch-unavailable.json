@@ -1,0 +1,19 @@
+{
+  "name": "bread-orderbatch-unavailable",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "url": "/BreadBakery/orderBatch",
+    "bodyPatterns": [
+      { "matchesJsonPath": "$.couponCode", "equalTo": "FORCE_UNAVAILABLE" }
+    ]
+  },
+  "response": {
+    "status": 503,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "error": "service_unavailable",
+      "message": "bakery is closed"
+    }
+  }
+}

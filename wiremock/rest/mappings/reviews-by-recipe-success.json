@@ -1,0 +1,21 @@
+{
+  "name": "reviews-by-recipe-success",
+  "priority": 5,
+  "request": {
+    "method": "POST",
+    "url": "/graphql",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": {
+          "expression": "$.operationName",
+          "equalTo": "ReviewsByRecipe"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "reviews/reviews-by-recipe-success.json"
+  }
+}

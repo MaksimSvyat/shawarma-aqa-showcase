@@ -1,0 +1,27 @@
+syntax = "proto3";
+package bakery;
+option java_multiple_files = true;
+option java_package = "com.shawarmashop.partner.bread.proto";
+
+service BreadBakery {
+  rpc OrderBatch (BreadOrder) returns (BreadConfirmation);
+}
+
+message BreadOrder {
+  string orderRef = 1;
+  Bread bread = 2;
+  Pickup pickup = 3;
+  string couponCode = 4;
+  bool urgent = 5;
+}
+message Bread { string type = 1; int32 quantity = 2; string diet = 3; }
+message Pickup { string slot = 1; string courier = 2; bool refrigerated = 3; }
+
+message BreadConfirmation {
+  string batchId = 1;
+  int32 readyInSec = 2;
+  int32 pricePerUnit = 3;
+  int32 totalPrice = 4;
+  Bakery bakery = 5;
+}
+message Bakery { string branch = 1; string masterChef = 2; }

@@ -1,0 +1,7 @@
+{
+  "txnId": "txn_declined_{{randomValue type='UUID'}}",
+  "status": "FAILED",
+  "processedAt": "2026-05-01T10:00:00Z",
+  "fee": { "value": 0.0, "currency": "RUB" },
+  "message": "Insufficient funds: card balance below required amount"
+}

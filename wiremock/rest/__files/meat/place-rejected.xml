@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Body>
+    <m:placeMeatOrderResponse xmlns:m="http://shawarmashop.com/partners/meat">
+      <invoiceNumber>INV-2026-REJECT</invoiceNumber>
+      <totalCost>0.00</totalCost>
+      <eta>2026-05-02T08:00:00Z</eta>
+      <status>REJECTED</status>
+      <warehouse>
+        <code>WH-EAST</code>
+        <contactPhone>+7-495-000-0000</contactPhone>
+      </warehouse>
+    </m:placeMeatOrderResponse>
+  </soapenv:Body>
+</soapenv:Envelope>

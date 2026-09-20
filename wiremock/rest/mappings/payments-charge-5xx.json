@@ -1,0 +1,19 @@
+{
+  "name": "payments-charge-5xx",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "url": "/payments/charge",
+    "headers": {
+      "Idempotency-Key": { "equalTo": "force-5xx" }
+    }
+  },
+  "response": {
+    "status": 503,
+    "headers": { "Content-Type": "application/json" },
+    "jsonBody": {
+      "error": "service_unavailable",
+      "message": "Payments provider is temporarily unavailable"
+    }
+  }
+}

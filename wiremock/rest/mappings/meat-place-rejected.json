@@ -1,0 +1,16 @@
+{
+  "name": "meat-place-rejected",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "url": "/soap/meat",
+    "bodyPatterns": [
+      { "matchesXPath": "//*[local-name()='code'][text()='REJECT_TEST']" }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "text/xml; charset=UTF-8" },
+    "bodyFileName": "meat/place-rejected.xml"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "txnId": "txn_pending_{{randomValue type='UUID'}}",
+  "status": "PENDING",
+  "processedAt": "2026-05-01T10:00:00Z",
+  "fee": { "value": 5.0, "currency": "RUB" },
+  "message": "Awaiting 3DS confirmation — provider will send webhook when ready"
+}

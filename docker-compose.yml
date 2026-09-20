@@ -1,0 +1,170 @@
+name: shawarma-local
+
+services:
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - ./pgadmin:/var/lib/pgadmin
+    ports:
+      - 5050:80
+    networks:
+      - shawarma-local
+
+  shawarma-postgres:
+    image: postgres:15-alpine
+    container_name: shawarma-postgres-local
+    environment:
+      SHAWARMA_DB_READONLY_PASSWORD: shawara_cucumber_nadzor
+      POSTGRES_DB: shawarma_db
+      POSTGRES_USER: shawarma
+      POSTGRES_PASSWORD: shawarma
+    volumes:
+      - shawarma_postgres_local:/var/lib/postgresql/data
+    ports:
+      - "5434:5432"
+    networks:
+      - shawarma-local
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shawarma -d shawarma_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kafka-ui:
+    container_name: kafka-ui
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "8084:8080"
+    environment:
+      DYNAMIC_CONFIG_ENABLED: "true"
+      KAFKA_CLUSTERS_0_NAME: shawarma-local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: shawarma-kafka:29092
+    depends_on:
+      shawarma-kafka:
+        condition: service_healthy
+    networks:
+      - shawarma-local
+
+  shawarma-kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: shawarma-kafka-local
+    hostname: shawarma-kafka
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:29092,EXTERNAL://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://shawarma-kafka:29092,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@shawarma-kafka:9093
+      CLUSTER_ID: MkU3OEVCNTcwNTJENDM2Qk
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+    volumes:
+      - shawarma_kafka_local:/var/lib/kafka/data
+    ports:
+      - "9092:9092"
+    networks:
+      - shawarma-local
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "kafka-broker-api-versions --bootstrap-server localhost:29092 >/dev/null 2>&1"
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  shawarma-wiremock-rest:
+    image: wiremock/wiremock:3.13.1
+    container_name: shawarma-wiremock-rest-local
+    command: ["--global-response-templating"]
+    volumes:
+      - ./wiremock/rest/mappings:/home/wiremock/mappings:ro
+      - ./wiremock/rest/__files:/home/wiremock/__files:ro
+    networks:
+      - shawarma-local
+    ports:
+      - "8081:8080"
+
+  shawarma-wiremock-grpc:
+    image: adven27/grpc-wiremock:latest
+    container_name: shawarma-wiremock-grpc-local
+    environment:
+      GRPC_SERVER_PORT: 50051
+      GRPC_ERRORCODEBY_HTTP_STATUSCODE_502: UNAVAILABLE
+    volumes:
+      - ./wiremock/grpc/proto:/proto:ro
+      - ./wiremock/grpc:/wiremock:ro
+    networks:
+      - shawarma-local
+    ports:
+      - "50051:50051"  
+      - "8083:8888"
+
+  shawarma-app:
+    image: ghcr.io/penolegrus/shawarma-backend:latest
+    container_name: shawarma-app-local
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:postgresql://shawarma-postgres:5432/shawarma_db
+      SPRING_DATASOURCE_USERNAME: shawarma
+      SPRING_DATASOURCE_PASSWORD: shawarma
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: shawarma-kafka:29092
+      APP_PARTNERS_PAYMENTS_BASE_URL: http://shawarma-wiremock-rest:8080/payments
+      APP_PARTNERS_MEAT_BASE_URL: http://shawarma-wiremock-rest:8080/soap/meat
+      APP_PARTNERS_REVIEWS_BASE_URL: http://shawarma-wiremock-rest:8080/graphql
+      APP_PARTNERS_BREAD_HOST: shawarma-wiremock-grpc
+      APP_PARTNERS_BREAD_PORT: 50051
+      APP_BOOTSTRAP_LOGIN: owner
+      APP_BOOTSTRAP_PASSWORD: owner123
+      APP_PUBLIC_URL: http://localhost:3001
+      LOGGING_LEVEL_COM_SHAWARMASHOP: DEBUG
+    ports:
+      - "8082:8080"
+    depends_on:
+      shawarma-postgres:
+        condition: service_healthy
+      shawarma-kafka:
+        condition: service_healthy
+    networks:
+      - shawarma-local
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8080/actuator/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 90s
+
+  shawarma-frontend:
+    image: ghcr.io/penolegrus/shawarma-frontend:latest
+    container_name: shawarma-frontend-local
+    ports:
+      - "3001:80"
+    depends_on:
+      - shawarma-app
+    networks:
+      - shawarma-local
+    healthcheck:
+      test: ["CMD-SHELL", "(echo > /dev/tcp/127.0.0.1/80) 2>/dev/null || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  shawarma_postgres_local:
+  shawarma_kafka_local:
+
+networks:
+  shawarma-local:
+    driver: bridge

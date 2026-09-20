@@ -1,0 +1,45 @@
+{
+  "data": {
+    "reviewsByRecipe": {
+      "recipeId": 4,
+      "totalCount": 3,
+      "averageStars": 4.7,
+      "page": 0,
+      "items": [
+        {
+          "id": "rev-001",
+          "stars": 5,
+          "text": "Лучшая шаурма в городе! Мясо просто тает во рту",
+          "author": {
+            "nickname": "FoodHunter42",
+            "level": 12,
+            "city": "Moscow"
+          },
+          "createdAt": "2026-05-20T18:30:00Z"
+        },
+        {
+          "id": "rev-002",
+          "stars": 4,
+          "text": "Очень вкусно, но в этот раз слегка пересолено",
+          "author": {
+            "nickname": "PixelChef",
+            "level": 7,
+            "city": "St. Petersburg"
+          },
+          "createdAt": "2026-05-19T13:15:00Z"
+        },
+        {
+          "id": "rev-003",
+          "stars": 5,
+          "text": "Заказывал 3 раза за неделю, теперь это моя любимая",
+          "author": {
+            "nickname": "RetroGamer",
+            "level": 24,
+            "city": "Kazan"
+          },
+          "createdAt": "2026-05-18T09:42:00Z"
+        }
+      ]
+    }
+  }
+}

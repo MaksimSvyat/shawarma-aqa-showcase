@@ -1,0 +1,16 @@
+{
+  "name": "reviews-rating-error",
+  "priority": 1,
+  "request": {
+    "method": "POST",
+    "url": "/graphql",
+    "headers": {
+      "X-Force-Error": { "equalTo": "true" }
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": { "Content-Type": "application/json" },
+    "bodyFileName": "reviews/rating-error.json"
+  }
+}
