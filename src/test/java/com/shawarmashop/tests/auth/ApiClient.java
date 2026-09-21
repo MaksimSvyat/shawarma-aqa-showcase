@@ -1,6 +1,6 @@
 package com.shawarmashop.tests.auth;
 
-import com.shawarmashop.tests.rest.clients.AuthClient;
+import com.shawarmashop.tests.rest.clients.*;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -57,5 +57,25 @@ public class ApiClient {
 
     public AuthClient auth(){
         return new AuthClient(this);
+    }
+
+    public EventClient events(){
+        return new EventClient(this);
+    }
+
+    public IngredientClient ingredients(){
+        return new IngredientClient(this);
+    }
+
+    public OrderClient orders(){
+        return new OrderClient(this);
+    }
+
+    public PaymentClient payments(){
+        return new PaymentClient(this);
+    }
+
+    public RecipeClient recipes(){
+        return new RecipeClient(this);
     }
 }
