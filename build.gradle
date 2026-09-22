@@ -36,6 +36,9 @@ dependencies {
 
     testImplementation 'io.rest-assured:rest-assured:6.0.1'
     testImplementation 'io.qameta.allure:allure-rest-assured:2.35.4'
+
+    testImplementation 'com.zaxxer:HikariCP:7.1.0'
+
 }
 
 test {
