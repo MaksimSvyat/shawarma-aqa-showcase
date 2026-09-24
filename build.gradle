@@ -39,6 +39,8 @@ dependencies {
 
     testImplementation 'com.zaxxer:HikariCP:7.1.0'
 
+    testImplementation 'org.awaitility:awaitility:4.3.0'
+
 }
 
 test {
