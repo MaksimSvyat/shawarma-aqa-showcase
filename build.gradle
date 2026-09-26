@@ -47,6 +47,8 @@ dependencies {
     testRuntimeOnly 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
 
     testImplementation 'ch.qos.logback:logback-classic:1.5.12'
+
+    testImplementation 'com.codeborne:selenide:7.17.0'
 }
 
 test {
