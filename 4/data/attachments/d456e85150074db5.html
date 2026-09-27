@@ -1,0 +1,34 @@
+<div>POST to http://localhost:8082/api/v1/orders</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;payment&quot;: {
+        &quot;method&quot;: &quot;CARD&quot;
+    },
+    &quot;qty&quot;: 1,
+    &quot;recipeId&quot;: 16
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaGF3YXJtYS1zaG9wIiwic3ViIjoib3duZXIiLCJpYXQiOjE3OTA1MTM2ODksImV4cCI6MTc5MDYwMDA4OX0.1VS3r8GKpYzKazkyapNI5ZrwIvxoQwWKaOT3NI-9uKA</div>
+            <div>Accept: */*</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8082/api/v1/orders&#39; -H &#39;Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaGF3YXJtYS1zaG9wIiwic3ViIjoib3duZXIiLCJpYXQiOjE3OTA1MTM2ODksImV4cCI6MTc5MDYwMDA4OX0.1VS3r8GKpYzKazkyapNI5ZrwIvxoQwWKaOT3NI-9uKA&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;payment&quot;: {
+        &quot;method&quot;: &quot;CARD&quot;
+    },
+    &quot;qty&quot;: 1,
+    &quot;recipeId&quot;: 16
+}&#39;
+    </div>
+

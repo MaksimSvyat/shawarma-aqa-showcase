@@ -1,0 +1,30 @@
+<div>PATCH to http://localhost:8082/api/v1/recipes/19</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;description&quot;: &quot;Обновлённое описание&quot;,
+    &quot;name&quot;: &quot;E2E_PATCHED_63baa4c7-4cc0-4c22-abe1-73c50c1ceeb0&quot;,
+    &quot;price&quot;: 345.00
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaGF3YXJtYS1zaG9wIiwic3ViIjoib3duZXIiLCJpYXQiOjE3OTA1MTM3MTIsImV4cCI6MTc5MDYwMDExMn0.f6bZT9LtU_Q9cmdKnMqIx33LRvnjXQmlajNx3uka4U4</div>
+            <div>Accept: */*</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X PATCH &#39;http://localhost:8082/api/v1/recipes/19&#39; -H &#39;Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaGF3YXJtYS1zaG9wIiwic3ViIjoib3duZXIiLCJpYXQiOjE3OTA1MTM3MTIsImV4cCI6MTc5MDYwMDExMn0.f6bZT9LtU_Q9cmdKnMqIx33LRvnjXQmlajNx3uka4U4&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;description&quot;: &quot;Обновлённое описание&quot;,
+    &quot;name&quot;: &quot;E2E_PATCHED_63baa4c7-4cc0-4c22-abe1-73c50c1ceeb0&quot;,
+    &quot;price&quot;: 345.00
+}&#39;
+    </div>
+

@@ -1,0 +1,63 @@
+<div>POST to http://localhost:8083/__admin/mappings</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;request&quot;: {
+        &quot;method&quot;: &quot;POST&quot;,
+        &quot;url&quot;: &quot;/BreadBakery/orderBatch&quot;
+    },
+    &quot;response&quot;: {
+        &quot;status&quot;: 200,
+        &quot;headers&quot;: {
+            &quot;Content-type&quot;: &quot;application/json&quot;
+        },
+        &quot;jsonBody&quot;: {
+            &quot;batchId&quot;: &quot;B-dd952c46&quot;,
+            &quot;readyInSec&quot;: 400,
+            &quot;pricePerUnit&quot;: 2500,
+            &quot;totalPrice&quot;: 25000,
+            &quot;bakery&quot;: {
+                &quot;branch&quot;: &quot;test-branch&quot;,
+                &quot;masterChef&quot;: &quot;Showcase Chef&quot;
+            }
+        }
+    }
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: */*</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8083/__admin/mappings&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;request&quot;: {
+        &quot;method&quot;: &quot;POST&quot;,
+        &quot;url&quot;: &quot;/BreadBakery/orderBatch&quot;
+    },
+    &quot;response&quot;: {
+        &quot;status&quot;: 200,
+        &quot;headers&quot;: {
+            &quot;Content-type&quot;: &quot;application/json&quot;
+        },
+        &quot;jsonBody&quot;: {
+            &quot;batchId&quot;: &quot;B-dd952c46&quot;,
+            &quot;readyInSec&quot;: 400,
+            &quot;pricePerUnit&quot;: 2500,
+            &quot;totalPrice&quot;: 25000,
+            &quot;bakery&quot;: {
+                &quot;branch&quot;: &quot;test-branch&quot;,
+                &quot;masterChef&quot;: &quot;Showcase Chef&quot;
+            }
+        }
+    }
+}&#39;
+    </div>
+

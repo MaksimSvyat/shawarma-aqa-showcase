@@ -1,0 +1,37 @@
+<div>POST to http://localhost:8081/__admin/requests/find</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;url&quot;: &quot;/soap/meat&quot;,
+    &quot;bodyPatterns&quot;: [
+        {
+            &quot;matchesXPath&quot;: &quot;//*[local-name()=&#39;orderRef&#39; and starts-with(normalize-space(.), &#39;restock-23-&#39;)]&quot;
+        }
+    ]
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: */*</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8081/__admin/requests/find&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;method&quot;: &quot;POST&quot;,
+    &quot;url&quot;: &quot;/soap/meat&quot;,
+    &quot;bodyPatterns&quot;: [
+        {
+            &quot;matchesXPath&quot;: &quot;//*[local-name()=&#39;orderRef&#39; and starts-with(normalize-space(.), &#39;restock-23-&#39;)]&quot;
+        }
+    ]
+}&#39;
+    </div>
+

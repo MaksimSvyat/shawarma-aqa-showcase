@@ -1,0 +1,27 @@
+<div>POST to http://localhost:8082/api/v1/orders/3/pay</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;method&quot;: &quot;CARD&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaGF3YXJtYS1zaG9wIiwic3ViIjoib3duZXIiLCJpYXQiOjE3OTA1MTM2ODQsImV4cCI6MTc5MDYwMDA4NH0.TasE6rIP7AbbTDh4G_kcqZcm11D1xuXGkXfEcg2oD5Q</div>
+            <div>Accept: */*</div>
+            <div>Idempotency-Key: test-c074aaff-3504-4e01-9dfd-38e1b2bc53f1</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8082/api/v1/orders/3/pay&#39; -H &#39;Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJzaGF3YXJtYS1zaG9wIiwic3ViIjoib3duZXIiLCJpYXQiOjE3OTA1MTM2ODQsImV4cCI6MTc5MDYwMDA4NH0.TasE6rIP7AbbTDh4G_kcqZcm11D1xuXGkXfEcg2oD5Q&#39; -H &#39;Accept: */*&#39; -H &#39;Idempotency-Key: test-c074aaff-3504-4e01-9dfd-38e1b2bc53f1&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;method&quot;: &quot;CARD&quot;
+}&#39;
+    </div>
+
