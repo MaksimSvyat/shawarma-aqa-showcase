@@ -49,6 +49,14 @@ dependencies {
     testImplementation 'ch.qos.logback:logback-classic:1.5.12'
 
     testImplementation 'com.codeborne:selenide:7.17.0'
+    testImplementation 'com.codeborne:selenide-proxy:7.17.0'
+    testImplementation 'io.qameta.allure:allure-selenide:2.35.4'
+}
+
+tasks.withType(JavaExec).configureEach {
+    jvmArgs += '-Dfile.encoding=UTF-8'
+    jvmArgs += '-Dstdout.encoding=UTF-8'
+    jvmArgs += '-Dstderr.encoding=UTF-8'
 }
 
 test {
