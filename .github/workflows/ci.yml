@@ -164,7 +164,7 @@ jobs:
           ls -la allure-results/ || echo "No allure results"
 
       - name: Generate Allure report
-        uses: simple-elf/allure-report-action@v1.12
+        uses: simple-elf/allure-report-action@master
         with:
           allure_results: allure-results
           allure_history: allure-history
