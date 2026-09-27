@@ -30,16 +30,21 @@ jobs:
       - name: Wait for services to be healthy
         run: |
           set -e
-          echo "Waiting for all containers to report healthy..."
+          services="shawarma-postgres-local shawarma-kafka-local shawarma-app-local shawarma-wiremock-rest-local"
+          echo "Waiting for: $services"
           for i in $(seq 1 60); do
-            unhealthy=$(docker compose ps --format json \
-              | jq -r 'select(.Health != "" and .Health != "healthy") | .Name' \
-              | tr '\n' ' ')
-            if [ -z "$unhealthy" ]; then
-              echo "All services healthy."
+            not_ready=""
+            for c in $services; do
+              status=$(docker inspect --format='{{.State.Health.Status}}' "$c" 2>/dev/null || echo "missing")
+              if [ "$status" != "healthy" ]; then
+                not_ready="$not_ready $c($status)"
+              fi
+            done
+            if [ -z "$not_ready" ]; then
+              echo "All required services healthy."
               exit 0
             fi
-            echo "[$i/60] Waiting for: $unhealthy"
+            echo "[$i/60] Not ready:$not_ready"
             sleep 5
           done
           echo "::error::Timeout waiting for services"
@@ -87,16 +92,21 @@ jobs:
       - name: Wait for services to be healthy
         run: |
           set -e
-          echo "Waiting for all containers to report healthy..."
+          services="shawarma-postgres-local shawarma-kafka-local shawarma-app-local shawarma-wiremock-rest-local"
+          echo "Waiting for: $services"
           for i in $(seq 1 60); do
-            unhealthy=$(docker compose ps --format json \
-              | jq -r 'select(.Health != "" and .Health != "healthy") | .Name' \
-              | tr '\n' ' ')
-            if [ -z "$unhealthy" ]; then
-              echo "All services healthy."
+            not_ready=""
+            for c in $services; do
+              status=$(docker inspect --format='{{.State.Health.Status}}' "$c" 2>/dev/null || echo "missing")
+              if [ "$status" != "healthy" ]; then
+                not_ready="$not_ready $c($status)"
+              fi
+            done
+            if [ -z "$not_ready" ]; then
+              echo "All required services healthy."
               exit 0
             fi
-            echo "[$i/60] Waiting for: $unhealthy"
+            echo "[$i/60] Not ready:$not_ready"
             sleep 5
           done
           echo "::error::Timeout waiting for services"
