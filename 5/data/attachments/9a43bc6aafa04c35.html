@@ -1,0 +1,31 @@
+<div>POST to http://localhost:8082/api/v1/webhooks/payments</div>
+
+    <h4>Body</h4>
+    <div>
+    <pre class="preformated-text">
+{
+    &quot;occurredAt&quot;: &quot;2026-09-27T13:35:19.274032332Z&quot;,
+    &quot;signature&quot;: null,
+    &quot;status&quot;: &quot;SUCCEEDED&quot;,
+    &quot;txnId&quot;: &quot;txn_aaf9f66c-83a5-4a7b-af10-7202f729edcecancel_paid&quot;
+}    </pre>
+    </div>
+
+    <h4>Headers</h4>
+    <div>
+            <div>Accept: */*</div>
+            <div>Content-Type: application/json</div>
+    </div>
+
+
+
+    <h4>Curl</h4>
+    <div>
+        curl -v -X POST &#39;http://localhost:8082/api/v1/webhooks/payments&#39; -H &#39;Accept: */*&#39; -H &#39;Content-Type: application/json&#39; -d &#39;{
+    &quot;occurredAt&quot;: &quot;2026-09-27T13:35:19.274032332Z&quot;,
+    &quot;signature&quot;: null,
+    &quot;status&quot;: &quot;SUCCEEDED&quot;,
+    &quot;txnId&quot;: &quot;txn_aaf9f66c-83a5-4a7b-af10-7202f729edcecancel_paid&quot;
+}&#39;
+    </div>
+

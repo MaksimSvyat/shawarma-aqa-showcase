@@ -1,0 +1,53 @@
+<div>Status code 201 </div>
+
+
+<h4>Body</h4>
+<div>
+    <pre class="preformated-text">
+{
+    &quot;id&quot;: &quot;c957e3ca-1eb9-4c4f-a636-21e57ae98f9a&quot;,
+    &quot;request&quot;: {
+        &quot;url&quot;: &quot;/graphql&quot;,
+        &quot;method&quot;: &quot;POST&quot;,
+        &quot;bodyPatterns&quot;: [
+            {
+                &quot;matchesJsonPath&quot;: {
+                    &quot;expression&quot;: &quot;$.operationName&quot;,
+                    &quot;equalTo&quot;: &quot;RecipeRating&quot;
+                }
+            },
+            {
+                &quot;matchesJsonPath&quot;: {
+                    &quot;expression&quot;: &quot;$.variables.recipeId&quot;,
+                    &quot;equalTo&quot;: &quot;23&quot;
+                }
+            }
+        ]
+    },
+    &quot;response&quot;: {
+        &quot;status&quot;: 200,
+        &quot;jsonBody&quot;: {
+            &quot;data&quot;: null,
+            &quot;errors&quot;: [
+                {
+                    
+                }
+            ]
+        },
+        &quot;headers&quot;: {
+            &quot;Content-type&quot;: &quot;application/json&quot;
+        }
+    },
+    &quot;uuid&quot;: &quot;c957e3ca-1eb9-4c4f-a636-21e57ae98f9a&quot;,
+    &quot;priority&quot;: 1
+}    </pre>
+</div>
+
+<h4>Headers</h4>
+<div>
+        <div>Transfer-Encoding: chunked</div>
+        <div>Vary: Origin</div>
+        <div>Content-Type: application/json</div>
+</div>
+
+
